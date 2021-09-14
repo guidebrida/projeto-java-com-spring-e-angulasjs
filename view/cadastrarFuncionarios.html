@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="../css/funcionarios.css">
+<div ng-include src="'view/header.html'"></div>
+
+<div class="jumbotron"> 
+    <h2>Cadastro de funcionarios</h2>
+<form name="novoFuncionarioForm">
+<div class="checkbox">
+<div class="form-row">
+    <div class="form-group col-md">
+        <label for="nome">Funcionario</label>
+        <input type="text" class="form-control" ng-model="funcionario.usuario" placeholder="Funcionario" ng-required="true" ng-minlength="3"> 
+    </div>
+
+</div>
+    <div class="form-row"></div>
+    <div class="form-group col-md">
+        <label for="Telefone">Senha</label>
+        <input type="password" class="form-control" ng-model="funcionario.senha" placeholder="Senha" ng-required="true" ng-minlength="3">
+    </div>
+
+<div class="form-row">
+    <div class="form-group col-md">
+        <label for="tipo">Tipo Do Funcionario</label>
+        <select id="tipo" class="form-control" ng-model="funcionario.funcionario" ng-required="true">
+            <option value="">Tipo de pessoa</option>
+            <option value=1>Recepcionista</option>
+            <option value=2>Tecnico</option>
+            <option value=3>Admin</option>
+
+        </select>
+
+</div>
+</div>
+</div>
+<div ng-show="novoFuncionarioForm.$invalid && novoFuncionarioForm.$dirty" class="alert alert-danger">Por favor Prencha todos os campos com ao menos 3 caracteres</div>
+
+
+
+<div class="form-row">
+<button type="submit" class="btn btn-primary btn-block" ng-click="adicionarFuncionarios(funcionario)">Enviar</button>
+</form>
+</div>
+
+

@@ -1,0 +1,132 @@
+<div ng-include src="'view/header.html'"></div>
+
+
+
+<link rel="stylesheet" href="/css/os.css">
+<div class="jumbotron">
+    <table class="table table-striped">
+        <tr>
+            <th>ID DA ORDEM DE SERVIÇO</th>
+            <th>DATA</th>
+            <th>STATUS</th>
+            <th>ID DO CLIENTE</th>
+            <th>EQUIPAMENTOS</th>
+            <th>EDITAR EQUIPAMENTOS</th>
+            <th>IMAGEM</th>
+            <th>ALTERAR STATUS</th>
+            <th>APAGAR</th>
+        </tr>
+        <tr ng-repeat="os in ordemDeServico">
+            <td>{{os.id}}</td>
+            <td>{{os.instante | date:'dd/MM/yyyy HH:mm'}}</td>
+            <td>{{os.status }}</td>
+            <td>{{os.clienteId}}</td>
+            <td>{{formatarEquipamentos(os)}}</td>
+            <th><a href="#/equipamentos" ng-click="setEquipamento(os.equipamentos[0])" class="btn btn-primary">Editar Equipamentos</a></th>
+            
+            <td>
+                <a ng-href="{{os.imageUrl}}" target="_blank"><img ng-src="{{os.imageUrl}}" style="width: 50px;"
+                        ng-if="os.imageUrl"></a>
+                <div ng-show="!os.imageUrl">
+                    <button class="btn btn-info" data-bs-toggle="modal"  data-bs-target="#imagemModal"
+                   data-bs-whatever="@fat" ng-click="ordemDeServicoUnica(os.id)">ADD IMAGEM</button>
+                </div>
+            </td>
+
+            <td><button type="button" data-bs-toggle="modal"  data-bs-target="#exampleModal" data-bs-whatever="@fat"
+                    class="btn btn-warning" ng-click="ordemDeServicoUnica(os.id)">Status</button> </td>
+           
+            <td><button type="button" ng-click="excluirOs(os.id)" class="btn btn-danger">Apagar</button></td>
+        </tr>
+    </table>
+
+
+
+    
+    <div class="modal fade" id="imagemModal" tabindex="1" aria-labelledby="teste" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="teste">Editar cliente</h5>
+                </div>
+                <div class="modal-body">
+    
+                    <div class="mb-2" >
+                        <label>Imagem URL:</label>
+                        <input type="file" class="form-control" file-model = "myFile"  accept=".jpg,.png">
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" ng-click="adicionaImagem(os)">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron">
+    <h1>ADICIONAR NOVA ORDEM DE SERVIÇO</h1>
+
+    <form name="addOs" id="addOs" ng-controller="ordemdeservicoCtrl">
+        <select class="form-control  col-md-6" ng-model="os.clienteId"
+            ng-options="cli.id as cli.nome for cli in clientes" ng-controller="clienteCtrl">
+            <option value="">Selecione um cliente</option>
+        </select>
+
+        <div class="form-group col-md-6">
+            <label for="Nome"></label>
+            <input type="text" class="form-control" ng-model="os.nome" placeholder="nome">
+
+            <label for="defeitos"></label>
+            <input type="text" class="form-control" ng-model="os.defeito" placeholder="defeitos">
+
+            <label for="Marca"></label>
+            <input type="text" class="form-control" ng-model="os.marca" placeholder="Marca">
+
+            <label for="Descricao"></label>
+            <input type="text" class="form-control" ng-model="os.descricao" placeholder="Descricao">
+
+            <button id="enviar" type="submit" class="  btn btn-primary btn-block "  ng-click="adicionarOS(os)">Adicionar
+                Ordem De Servico</button>
+        </div>
+
+
+
+    </form>
+</div>
+
+<!--Modal para edicao-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar cliente</h5>
+            </div>
+            <div class="modal-body">
+                <form>
+
+                    <div class="mb-2">
+                        <label for="tipo">Status Da Ordem de Servico</label>
+                        <select id="tipo" class="form-control" ng-model="os.status" style="margin-bottom: 25px;">
+
+                            <option value=0>FAZENDO ORCAMENENTO</option>
+                            <option value=1>AGUARDANDO APROVACAO</option>
+                            <option value=2>APROVADO</option>
+                            <option value=3>REJEITADO</option>
+                            <option value=4>CONCLUIDO</option>
+                    </div>
+
+
+                    </select>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fechar</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    ng-click="editarOrdemDeServico(os)">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>

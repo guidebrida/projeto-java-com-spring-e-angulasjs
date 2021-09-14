@@ -1,0 +1,88 @@
+<div ng-include src="'view/header.html'"></div>
+
+
+
+
+<div class="jumbotron">
+
+
+    <h1 style="text-align: center;">LISTA DE CLIENTES</h1>
+
+    <input style="margin-bottom: 30px;" class="form-control" type="text" ng-model="criterioDeBusca" placeholder="Busque algum cliente pelo seu nome">
+
+    <table class="table table-striped">
+        <tr>
+            <th>ID DO CLIENTE</th>
+            <th>CPF OU CNPJ</th>
+            <th>OS ID</th>
+            <th>EMAIL</th>
+            <th>NOME</th>
+            <th>TELEFONE</th>
+            <th>TIPO</th>
+            <th>ENDERECO</th>
+            <th>Editar</th>
+            <th>Apagar</th>
+        </tr>
+        <tr ng-repeat="cli in clientes | filter:{nome:criterioDeBusca} ">
+            <td>{{cli.id}}</td>
+            <td>{{cli.cpfCnpj}}</td>
+            <td>{{formatarOS(cli)}}</td>
+            <td>{{cli.email}}</td>
+            <td>{{cli.nome | uppercase}}</td>
+            <td>{{cli.telefone}}</td>
+            <td>{{cli.tipoCliente}}</td>
+            <td>{{cli.endereco.logradouro}} {{", numero: " + cli.endereco.numero}} {{", " + cli.endereco.bairro}} {{", "
+                + cli.endereco.cidade}} {{", " + cli.endereco.estado}}{{", CEP: " + cli.endereco.cep}} {{", Complemento: " + cli.endereco.complemento }} </td>
+            <th>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat"
+                    class="btn btn-warning" ng-click="clienteUnico(cli.id)">Editar</button>
+            </th>
+            <th><button type="button" ng-click="excluirCliente(cli.id)" class="btn btn-danger btn-block">Apagar</button>
+            </th>
+        </tr>
+        <!--Modal para edicao-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar cliente</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-2">
+                                <label>Nome:</label>
+                                <input type="text" class="form-control" ng-model="cli.nome">
+                            </div>
+                            <div class="mb-2">
+                                <label>Email:</label>
+                                <input type="text" class="form-control" ng-model="cli.email">
+                            </div>
+                            <div class="mb-2">
+                                <label>Telefone:</label>
+                                <input type="text" class="form-control" ng-model="cli.telefone">
+                            </div>
+
+                            <div class="mb-2">
+                                <label for="tipo">Tipo do cliente</label>
+                                <select id="tipo" class="form-control" ng-model="cli.tipoCliente"
+                                    style="margin-bottom: 25px;">
+                                    <option value=0>Pessoa Fisica</option>
+                                    <option value=1>Pessoa juridida</option>
+                            </div>
+
+                            <div class="mb-2">
+                                <label>Cpf ou Cnpj:</label>
+                                <input type="text" class="form-control" ng-model="cli.cpfCnpj">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" ng-click="editarCliente(cli)">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </table>
+

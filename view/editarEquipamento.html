@@ -1,0 +1,40 @@
+<div ng-include src="'view/header.html'"></div>
+
+<div class="jumbotron">
+
+      <div class="form-row" ng-controller="equipamentoCtrl">
+
+
+  
+        
+            <div class="form-group col-md-6">
+                <label for="equipamentos">Equipamentos</label>
+                <input type="text" class="form-control"  ng-model="equi.nome" placeholder="equipamentos">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Defeitos">Defeitos</label>
+                <input type="text" class="form-control"  ng-model="equi.defeito" placeholder="Defeitos">
+            </div>
+       
+    
+            <div class="form-group col-md-6">
+                <label for="Marca">Marca</label>
+                <input type="text" class="form-control"  ng-model="equi.marca" placeholder="Marca">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="Descricao">Descricao</label>
+                <input type="text" class="form-control"  ng-model="equi.descricao" placeholder="Descricao">
+            </div>
+
+            <form  style="margin-right: 30px;">
+                <input type="submit"  class="btn btn-success" ng-click="editEqui(equi)"   value="confirmar"/>
+            </form>
+
+            <form action="#/ordemdeservico">
+                <input type="submit"  class="btn btn-danger"  value="Voltar"/>
+            </form>
+
+  
+    </div>
+    </div>

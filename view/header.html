@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="../css/header.css">
+    
+
+    <div class="container">
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <img src="../img/logo_fundo_branco.jpg" class="d-flex align-items-center col-md-3 mb-2 mb-md-0"></img>
+          <svg  width="100" height="70" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+        </a>
+  
+        <ul class="nav col-12 col-md-auto mb-1 justify-content-center mb-md-1">
+          <li><a href="#/inicio" class="nav-link px-3 link-secondary">Inicio</a></li>
+          <li><a href="#/ordemdeservico" class="nav-link px-3 link-dark">Ordem De Serviço</a></li>
+          <li><a href="#/clientes" class="nav-link px-3 link-dark">Clientes</a></li>
+          <li><a href="#/addclientes" class="nav-link px-2  link-dark">Novo Cliente</a></li>
+        </ul>
+  
+        <div class="col-md-1 text-end" ng-controller="loginCtrl">
+          <form action="#/login">
+            <input type="submit"  class="btn btn-outline-primary me-2" value="Logout" ng-click="logout()" />
+        </form>
+        </div>
+        <div class="col-md-1 text-end">
+          <form action="#/funcionarios">
+            <button type="submit" class="btn btn-primary"   data-bs-target="#Novofuncionario">Cadastrar</button>
+
+          </form>
+
+      </header>
+    </div>
+  
