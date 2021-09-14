@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:spanth="http://www.w3.org/1999/XSL/Transform">
+<html lang="pt-BR">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Aprovação OS</title>
+    <style>
+        body{
+            margin-top: 50px;
+            background-color: aquamarine;
+        }
+        h2{
+            text-align: center;
+        }
+        p{
+            text-align: center;
+        }
+        h1{
+            text-align: center;
+        }
+          form{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h1>
+    Ordem de serviço número: <span th:text="${ordemdeservico.id}"> </span>
+</h1>
+<h2>Favor conferir informações e aprovar a Ordem de Servico</h2>
+<p>
+    Data: <span th:text="${ordemdeservico.instante}"></span>
+</p>
+<p>
+    Cliente: <span th:text="${ordemdeservico.cliente.nome}"></span>
+
+</p>
+<p>Status:  <span th:text="${ordemdeservico.status}"></span></p>
+
+<p>Veja a Imagem do defeito:</p>
+
+<p><span th:text="${ordemdeservico.imageUrl}"></span></p>
+
+<form action="#" th:action="${url}" method="post">
+    <input type="submit" class="btn btn-success"  value="Confirmar Ordem"/>
+</form>
+<form action="#" th:action="${url2}" method="post">
+    <input type="submit" class="btn btn-danger"  value="Recusar Ordem"/>
+</form>
+
+
+</div>
+</body>
+</html>
