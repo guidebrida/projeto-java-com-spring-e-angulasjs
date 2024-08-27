@@ -1,13 +1,10 @@
-
-
 # Materials Maintenance System
 
-This work was done during my internship at Betha Sistemas, which is why the code is not divided between backend and frontend.
+This project was developed to manage and maintain various materials efficiently, utilizing both backend and frontend technologies in a single codebase.
 
 ## Table of Contents
 
-
-The Materials Maintenance System is designed to manage and maintain various materials efficiently. This project was developed during my internship at Betha Sistemas, utilizing both backend and frontend technologies in a single codebase.
+The Materials Maintenance System integrates backend and frontend technologies, with both layers combined in one codebase due to the use of an older architecture.
 
 ## Technologies Used
 
